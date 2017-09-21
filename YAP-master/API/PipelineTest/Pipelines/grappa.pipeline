@@ -1,0 +1,26 @@
+import "BasicRecon.dll";
+import "GrappaRecon.dll";
+
+CmrRawDataReader reader(DataPath = "D:\\test_data\\RawData_256\\RawData",
+	ChannelCount = 4, ChannelSwitch = 15);
+SliceSelector slice_selector;
+Fft2D fft;
+ModulePhase module_phase;
+Grappa grappa;
+ChannelDataCollector data_collector;
+ChannelMerger channel_merger;
+ChannelIterator channel_iterator;
+
+JpegExporter jpeg_exporter(ExportFolder = "d:\\Output");
+	
+reader->slice_selector;
+
+slice_selector->data_collector;
+data_collector->grappa;
+grappa->channel_iterator;
+channel_iterator->fft;
+fft->module_phase;
+module_phase.Module->channel_merger;
+channel_merger->jpeg_exporter;
+
+self.Input->reader.Input;
