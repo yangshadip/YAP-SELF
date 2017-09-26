@@ -1,0 +1,8 @@
+import "BasicRecon.dll";
+
+DicomReader reader(DataPath = "D:\\image.dcm",IsDirectory = false);
+JpegExporter jpeg_exporter(ExportFolder = "D:\\");
+	
+reader->jpeg_exporter;
+
+self.Input->reader.Input;
